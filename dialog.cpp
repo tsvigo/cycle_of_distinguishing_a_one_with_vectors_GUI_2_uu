@@ -18,7 +18,7 @@ using namespace std;
 QString    Nazvaniye_fayla_s_neyronami_i_signalom="";
 long long variable_error;
 int var ;
-int variable_synapse_index_counter=0;
+int variable_synapse_index_counter=10100;
 
  int neuron_index = 0, synapse_index = 0;
  bool all_sinapsi_proydeni=false;
@@ -165,6 +165,7 @@ qDebug() << "Строка не является числовой, или зна�
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////// Solution function ////////////////////////////////////////////////////////////
       b:
+      if (variable_synapse_index_counter==0)variable_synapse_index_counter=10100;
           for ( var = 100;
          var < 200
 
@@ -199,11 +200,11 @@ qDebug() << "Строка не является числовой, или зна�
               ; // + на -
           }
 //########################################################################################################
-//########################################################################################################
-      /////////////   показываем что определила программа
-          if
-            //  ( variable_error <=0)
-              (list_of_neurons->at(200)>=0)
+//################################# конец решения ###################################################################
+/////////////   показываем что определила программа
+/// подстройка
+///
+          if       (list_of_neurons->at(200)>=0)
 
           {
               ui->label->setText(Nazvaniye_fayla_s_neyronami_i_signalom+"\n"+"Программа считает что это не 1.");
@@ -211,7 +212,7 @@ qDebug() << "Строка не является числовой, или зна�
              {
              // если все синапсы пройдены, поставлены на минимумы и ошибка не пропала.
                    if (list_of_synapses->at(variable_synapse_index_counter) < 9223372036854775807 // почему 2147483646?
-                   && list_of_synapses->at(variable_synapse_index_counter) >0
+                  && list_of_synapses->at(variable_synapse_index_counter) >-9223372036854775806
                    ) // < 2147483646 или > 1
            {
     list_of_synapses->at(variable_synapse_index_counter)  =
@@ -221,7 +222,8 @@ qDebug() << "Строка не является числовой, или зна�
       goto b;
            }
            }
-        else
+        else if (variable_synapse_index_counter==0 && list_of_synapses->at(variable_synapse_index_counter)==
+                      -9223372036854775806       )
       {
        std::cout << "все синапсы пройдены, поставлены на минимумы и ошибка не пропала." << std::endl;
       all_sinapsi_proydeni=true;
@@ -234,9 +236,31 @@ qDebug() << "Строка не является числовой, или зна�
               //  Odin_Programmi=false;
               goto d;
           }
-      ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////  конец подстройки ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       d: ;;
+          // запишем синапсы
+              // Имя файла для записи
+                  QString filename = "/home/viktor/my_projects_qt_2/Funktsiya_Resheniya_2/synapses.txt";
+                  // /home/viktor/my_projects_qt_2/Funktsiya_Resheniya_2/synapses.txt
+                  QFile file3(filename);
 
+                  // Открываем файл для записи
+                  if (!file3.open(QIODevice::WriteOnly | QIODevice::Text |QIODevice::Truncate)) {
+                      std::cerr << "Unable to open file for writing!" << std::endl;
+
+                  }
+
+                  QTextStream out(&file3);
+
+                  // Записываем данные из вектора в файл
+                  for (const auto& value : *list_of_synapses) {
+                      out << value << "\n";
+                  }
+
+                  // Закрываем файл
+                  file3.close();
+
+                  std::cout << "Successfully wrote the vector to " << filename.toStdString() << std::endl;
 
 
 
