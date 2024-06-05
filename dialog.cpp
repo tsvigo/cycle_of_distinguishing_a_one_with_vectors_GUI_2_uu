@@ -165,6 +165,7 @@ qDebug() << "Строка не является числовой, или зна�
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////// Solution function ////////////////////////////////////////////////////////////
       b:
+
       if (variable_synapse_index_counter==0)variable_synapse_index_counter=10100;
           for ( var = 100;
          var < 200
@@ -200,42 +201,36 @@ qDebug() << "Строка не является числовой, или зна�
               ; // + на -
           }
 //########################################################################################################
+   variable_synapse_index_counter--;
 //################################# конец решения ###################################################################
 /////////////   показываем что определила программа
-/// подстройка
+std::cout << "list_of_synapses->at(200)= "  <<list_of_synapses->at(200)  <<std::endl;
+std::cout << "variable_synapse_index_counter= "  <<variable_synapse_index_counter  <<std::endl;
+/// подстройка //////////////////////////////////////////////////////////////////////////////////////////////
 ///
-          if       (list_of_neurons->at(200)>=0)
+          if       (list_of_neurons->at(200)>=0) // если Программа считает что это не 1.
+// начиная с variable_synapse_index_counter=10100 надо менять каждый синапс на 1
+//              for (variable_synapse_index_counter=10100;variable_synapse_index_counter>-1;
+//                   variable_synapse_index_counter--)
+              {
+  list_of_synapses->at(variable_synapse_index_counter)=
+          list_of_synapses->at(variable_synapse_index_counter)
+          -
+          1
+          ;
+  if (variable_synapse_index_counter==0 && list_of_synapses->at(variable_synapse_index_counter)==
+                        -9223372036854775806       )
+  {
 
-          {
-              ui->label->setText(Nazvaniye_fayla_s_neyronami_i_signalom+"\n"+"Программа считает что это не 1.");
-                     if (variable_synapse_index_counter>0) // вот была ошибка
-             {
-             // если все синапсы пройдены, поставлены на минимумы и ошибка не пропала.
-                   if (list_of_synapses->at(variable_synapse_index_counter) < 9223372036854775807 // почему 2147483646?
-                  && list_of_synapses->at(variable_synapse_index_counter) >-9223372036854775806
-                   ) // < 2147483646 или > 1
-           {
-    list_of_synapses->at(variable_synapse_index_counter)  =
-            list_of_synapses->at(variable_synapse_index_counter)-1;  // +1 или -1
-    variable_synapse_index_counter--;
-              std::cout << "list_of_neurons->at(200) = " << list_of_neurons->at(200)<< std::endl;
-      goto b;
-           }
-           }
-        else if (variable_synapse_index_counter==0 && list_of_synapses->at(variable_synapse_index_counter)==
-                      -9223372036854775806       )
-      {
-       std::cout << "все синапсы пройдены, поставлены на минимумы и ошибка не пропала." << std::endl;
-      all_sinapsi_proydeni=true;
-       std::cout << "list_of_neurons->at(200) = " <<list_of_neurons->at(200)<< std::endl;
-      }
-        // Odin_Programmi=true;
-     }
-            else {
-              ui->label->setText(Nazvaniye_fayla_s_neyronami_i_signalom+"\n"+"Программа считает что это 1.");
-              //  Odin_Programmi=false;
-              goto d;
-          }
+      goto e;
+  }
+               if(variable_synapse_index_counter==0)variable_synapse_index_counter=10100;
+                  goto b;
+              }
+          else goto d;
+e:
+std::cout << "все синапсы пройдены, поставлены на минимумы и ошибка не пропала." << std::endl;
+
 ////  конец подстройки ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       d: ;;
           // запишем синапсы
@@ -261,7 +256,6 @@ qDebug() << "Строка не является числовой, или зна�
                   file3.close();
 
                   std::cout << "Successfully wrote the vector to " << filename.toStdString() << std::endl;
-
 
 
 
