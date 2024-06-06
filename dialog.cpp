@@ -16,6 +16,11 @@ using namespace std;
 #include <QDebug>
 #include <chrono>
 #include <thread>
+//#include <log4cpp/Category.hh>
+//#include <log4cpp/Appender.hh>
+//#include <log4cpp/Layout.hh>
+//#include <log4cpp/Priority.hh>
+//#include <QLogger>
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 QString    Nazvaniye_fayla_s_neyronami_i_signalom="";
 long long variable_error;
@@ -34,7 +39,10 @@ namespace std {
 }
 //###########################################################################
 // Инициализация умного указателя на std::vector<long long>
-    std::unique_ptr<std::vector<long long>> list_of_synapses = std::make_unique<std::vector<long long>>();
+    std::unique_ptr<std::vector<//unsigned
+    long long>> list_of_synapses = std::make_unique<std::vector<
+          //  unsigned
+            long long>>();
      std::unique_ptr<std::vector<long long>> list_of_neurons = std::make_unique<std::vector<long long>>();
 //########################################################################################################
 Dialog::Dialog(QWidget *parent)
@@ -167,10 +175,11 @@ qDebug() << "Строка не является числовой, или зна�
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////// Solution function ////////////////////////////////////////////////////////////
+/// решение
       b:
      if       (list_of_neurons->at(200)<0) goto d;
       if (variable_synapse_index_counter==0)variable_synapse_index_counter=10100;
-          for ( var = 100;
+          for ( var = 100;              // первый for
          var < 200
 
            ; ++var) // This is the range of neurons
@@ -186,15 +195,25 @@ qDebug() << "Строка не является числовой, или зна�
 
 
               if (neuron_index < 200)
-                  list_of_neurons->at(var)=list_of_neurons->at(var) //-5310911
-                  +  (list_of_neurons->at(neuron_index)/
-                   list_of_synapses->at(synapse_index)); // + на -
+
+                  list_of_neurons->at(var)
+//###########################################################################
+                          =
+                          list_of_neurons->at(var) //-5310911
+                  +
+                          (
+                          (list_of_neurons->at(neuron_index)
+                    //  /   // деление
+                           -
+                   list_of_synapses->at(synapse_index))
+                              )
+                              ; // + на -
 
               } //
               if       (list_of_neurons->at(200)<0) goto d;
           }
       //////////////////////
-          for (int   neuron_index = 100, synapse_index = 10000;
+          for (int   neuron_index = 100, synapse_index = 10000;       // второй for
 
        synapse_index < 10100
        ;
@@ -203,10 +222,20 @@ qDebug() << "Строка не является числовой, или зна�
                     if (list_of_neurons->at(200)<0) break;
 
          if (list_of_synapses->at(synapse_index)!=0)
-              list_of_neurons->at(200) = list_of_neurons->at(200) //-5310911
-              + (list_of_neurons->at(neuron_index) / list_of_synapses->at(synapse_index))
+              list_of_neurons->at(200)
+//###########################################################################
+                      =
+                      list_of_neurons->at(200) //-5310911
+              +
+                      (
+                      (list_of_neurons->at(neuron_index)
+                     //  / // деление
+                       -
+                       list_of_synapses->at(synapse_index))
+                          )
               ; // + на -
          if       (list_of_neurons->at(200)<0) goto d;
+      //   std::cout << "list_of_neurons->at(200)= "  <<list_of_neurons->at(200)  <<std::endl;
           }
 //########################################################################################################
    variable_synapse_index_counter--;
@@ -217,7 +246,8 @@ std::cout << "variable_synapse_index_counter= "  <<variable_synapse_index_counte
 // list_of_synapses->at(variable_synapse_index_counter)
 std::cout << "list_of_synapses->at("<<variable_synapse_index_counter<<")= "  <<list_of_synapses->at(variable_synapse_index_counter)  <<std::endl;
      if       (list_of_neurons->at(200)<0) goto d;
-
+// list_of_synapses->at(synapse_index)
+std::cout << "list_of_synapses->at(0)= "  <<list_of_synapses->at(0) <<std::endl;
 /// подстройка //////////////////////////////////////////////////////////////////////////////////////////////
 ///
           if       (list_of_neurons->at(200)>=0) // если Программа считает что это не 1.
@@ -227,20 +257,27 @@ std::cout << "list_of_synapses->at("<<variable_synapse_index_counter<<")= "  <<l
               {
   list_of_synapses->at(variable_synapse_index_counter)=
           list_of_synapses->at(variable_synapse_index_counter)
-          -
-      //   1
-         9223372036854775807
-         // 1459315198938531889
-       //   859689765
+        - 1
+      //  10
+        // 9223372036854775807
+      // 1459315198938531889
+     // 859689765
           ;
 
-   if( list_of_synapses->at(0)<=-9223372036854775808)
-  exit(0);
-   if( list_of_synapses->at(variable_synapse_index_counter)<-9223372036854775808)
-       list_of_synapses->at(variable_synapse_index_counter)=-9223372036854775808;
+//   if( list_of_synapses->at(0)<=-9223372036854775808)
+// // exit(0);
+//       goto d;
+//   if( list_of_synapses->at(variable_synapse_index_counter)<-9223372036854775808)
+//  exit(0);
+   if( list_of_synapses->at(variable_synapse_index_counter)<0//-9223372036854775808
+           )
+       list_of_synapses->at(variable_synapse_index_counter)=0
+             //  -9223372036854775808
+               ;
   if (variable_synapse_index_counter==0 &&
-     list_of_synapses->at(variable_synapse_index_counter)<=
-                        -9223372036854775808       )
+     list_of_synapses->at(variable_synapse_index_counter)<=0
+                      //  -9223372036854775808
+          )
   {
 
       goto e;
