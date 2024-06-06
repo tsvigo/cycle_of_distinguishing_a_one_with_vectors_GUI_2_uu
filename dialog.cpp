@@ -26,12 +26,12 @@ int variable_synapse_index_counter=10100;
  bool all_sinapsi_proydeni=false;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Реализация make_unique для C++11
-//namespace std {
-//    template<typename T, typename... Args>
-//    std::unique_ptr<T> make_unique(Args&&... args) {
-//        return std::unique_ptr<T>(new T(std::forward<Args>(args)...));
-//    }
-//}
+namespace std {
+    template<typename T, typename... Args>
+    std::unique_ptr<T> make_unique(Args&&... args) {
+        return std::unique_ptr<T>(new T(std::forward<Args>(args)...));
+    }
+}
 //###########################################################################
 // Инициализация умного указателя на std::vector<long long>
     std::unique_ptr<std::vector<long long>> list_of_synapses = std::make_unique<std::vector<long long>>();
@@ -43,6 +43,7 @@ Dialog::Dialog(QWidget *parent)
 {
     ui->setupUi(this);
 //###########################################################################
+  //  closeApp() ;
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
               // выведем название программы
                std::cout << "  cycle_of_distinguishing_a_one_with_vectors_GUI_2_uu" << std::endl;
@@ -298,5 +299,29 @@ std::cout << "все синапсы пройдены, поставлены на 
 Dialog::~Dialog()
 {
     delete ui;
+}
+
+
+void Dialog::on_Dialog_finished(int result)
+{
+       closeApp() ;
+}
+
+
+void Dialog::on_Dialog_destroyed()
+{
+     closeApp() ;
+}
+
+
+void Dialog::on_Dialog_rejected()
+{
+     closeApp() ;
+}
+
+
+void Dialog::on_Dialog_destroyed(QObject *arg1)
+{
+     closeApp() ;
 }
 
