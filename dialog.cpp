@@ -14,6 +14,8 @@ using namespace std;
 #include <vector>
 #include <memory> // Для std::unique_ptr
 #include <QDebug>
+#include <chrono>
+#include <thread>
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 QString    Nazvaniye_fayla_s_neyronami_i_signalom="";
 long long variable_error;
@@ -24,12 +26,12 @@ int variable_synapse_index_counter=10100;
  bool all_sinapsi_proydeni=false;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Реализация make_unique для C++11
-namespace std {
-    template<typename T, typename... Args>
-    std::unique_ptr<T> make_unique(Args&&... args) {
-        return std::unique_ptr<T>(new T(std::forward<Args>(args)...));
-    }
-}
+//namespace std {
+//    template<typename T, typename... Args>
+//    std::unique_ptr<T> make_unique(Args&&... args) {
+//        return std::unique_ptr<T>(new T(std::forward<Args>(args)...));
+//    }
+//}
 //###########################################################################
 // Инициализация умного указателя на std::vector<long long>
     std::unique_ptr<std::vector<long long>> list_of_synapses = std::make_unique<std::vector<long long>>();
@@ -165,7 +167,7 @@ qDebug() << "Строка не является числовой, или зна�
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////// Solution function ////////////////////////////////////////////////////////////
       b:
-
+     if       (list_of_neurons->at(200)<0) goto d;
       if (variable_synapse_index_counter==0)variable_synapse_index_counter=10100;
           for ( var = 100;
          var < 200
@@ -173,6 +175,7 @@ qDebug() << "Строка не является числовой, или зна�
            ; ++var) // This is the range of neurons
 
           {
+              if (list_of_neurons->at(200)<0) break;
               for ( neuron_index = 0, synapse_index = 0;
 
                 /*,*/ synapse_index < 10100;
@@ -187,6 +190,7 @@ qDebug() << "Строка не является числовой, или зна�
                    list_of_synapses->at(synapse_index)); // + на -
 
               } //
+              if       (list_of_neurons->at(200)<0) goto d;
           }
       //////////////////////
           for (int   neuron_index = 100, synapse_index = 10000;
@@ -195,17 +199,24 @@ qDebug() << "Строка не является числовой, или зна�
        ;
             ++neuron_index, ++synapse_index)
           {
+                    if (list_of_neurons->at(200)<0) break;
+
          if (list_of_synapses->at(synapse_index)!=0)
               list_of_neurons->at(200) = list_of_neurons->at(200) //-5310911
               + (list_of_neurons->at(neuron_index) / list_of_synapses->at(synapse_index))
               ; // + на -
+         if       (list_of_neurons->at(200)<0) goto d;
           }
 //########################################################################################################
    variable_synapse_index_counter--;
 //################################# конец решения ###################################################################
 /////////////   показываем что определила программа
-std::cout << "list_of_synapses->at(200)= "  <<list_of_synapses->at(200)  <<std::endl;
+std::cout << "list_of_neurons->at(200)= "  <<list_of_neurons->at(200)  <<std::endl;
 std::cout << "variable_synapse_index_counter= "  <<variable_synapse_index_counter  <<std::endl;
+// list_of_synapses->at(variable_synapse_index_counter)
+std::cout << "list_of_synapses->at("<<variable_synapse_index_counter<<")= "  <<list_of_synapses->at(variable_synapse_index_counter)  <<std::endl;
+     if       (list_of_neurons->at(200)<0) goto d;
+
 /// подстройка //////////////////////////////////////////////////////////////////////////////////////////////
 ///
           if       (list_of_neurons->at(200)>=0) // если Программа считает что это не 1.
@@ -216,23 +227,35 @@ std::cout << "variable_synapse_index_counter= "  <<variable_synapse_index_counte
   list_of_synapses->at(variable_synapse_index_counter)=
           list_of_synapses->at(variable_synapse_index_counter)
           -
-          1
+      //   1
+         9223372036854775807
+         // 1459315198938531889
+       //   859689765
           ;
-  if (variable_synapse_index_counter==0 && list_of_synapses->at(variable_synapse_index_counter)==
-                        -9223372036854775806       )
+
+   if( list_of_synapses->at(0)<=-9223372036854775808)
+  exit(0);
+   if( list_of_synapses->at(variable_synapse_index_counter)<-9223372036854775808)
+       list_of_synapses->at(variable_synapse_index_counter)=-9223372036854775808;
+  if (variable_synapse_index_counter==0 &&
+     list_of_synapses->at(variable_synapse_index_counter)<=
+                        -9223372036854775808       )
   {
 
       goto e;
   }
                if(variable_synapse_index_counter==0)variable_synapse_index_counter=10100;
+               if(list_of_neurons->at(200)>=0)
                   goto b;
+               if(list_of_neurons->at(200)<0)
+                goto d;
               }
           else goto d;
 e:
 std::cout << "все синапсы пройдены, поставлены на минимумы и ошибка не пропала." << std::endl;
 
 ////  конец подстройки ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-      d: ;;
+      d:
           // запишем синапсы
               // Имя файла для записи
                   QString filename = "/home/viktor/my_projects_qt_2/Funktsiya_Resheniya_2/synapses.txt";
@@ -257,7 +280,10 @@ std::cout << "все синапсы пройдены, поставлены на 
 
                   std::cout << "Successfully wrote the vector to " << filename.toStdString() << std::endl;
 
+                  // Sleep for 5 seconds
+                  std::this_thread::sleep_for(std::chrono::seconds(5));
 
+                  qDebug() << "Program execution completed.";
 
 
 
