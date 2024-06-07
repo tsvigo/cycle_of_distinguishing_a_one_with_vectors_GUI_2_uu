@@ -255,7 +255,8 @@ std::cout << "list_of_synapses->at(0)= "  <<list_of_synapses->at(0) <<std::endl;
 //              for (variable_synapse_index_counter=10100;variable_synapse_index_counter>-1;
 //                   variable_synapse_index_counter--)
               {
-  list_of_synapses->at(variable_synapse_index_counter)=
+  list_of_synapses->at(variable_synapse_index_counter)
+          =
           list_of_synapses->at(variable_synapse_index_counter)
         - 1
       //  10
