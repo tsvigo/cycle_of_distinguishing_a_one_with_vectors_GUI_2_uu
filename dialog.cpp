@@ -185,7 +185,7 @@ qDebug() << "Строка не является числовой, или зна�
            ; ++var) // This is the range of neurons
 
           {
-              if (list_of_neurons->at(200)<0) break;
+          //    if (list_of_neurons->at(200)<0) break;
               for ( neuron_index = 0, synapse_index = 0;
 
                 /*,*/ synapse_index < 10100;
@@ -221,7 +221,7 @@ qDebug() << "Строка не является числовой, или зна�
           {
                     if (list_of_neurons->at(200)<0) break;
 
-         if (list_of_synapses->at(synapse_index)!=0)
+   //      if (list_of_synapses->at(synapse_index)!=0)
               list_of_neurons->at(200)
 //###########################################################################
                       =
