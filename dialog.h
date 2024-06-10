@@ -34,26 +34,26 @@ private:
     Ui::Dialog *ui;
 
 protected:
-    void closeEvent(QCloseEvent *event) override {
-        // Ваш код здесь
+//    void closeEvent(QCloseEvent *event) override {
+//        // Ваш код здесь
 
-        std::cout << "Executing custom code before closing the dialog." << std::endl;
+//        std::cout << "Executing custom code before closing the dialog." << std::endl;
 
-        // Можно также показать диалоговое окно для подтверждения
-        auto reply = QMessageBox::question(this, "Exit", "Are you sure you want to quit?",
-                                           QMessageBox::Yes | QMessageBox::No);
+//        // Можно также показать диалоговое окно для подтверждения
+//        auto reply = QMessageBox::question(this, "Exit", "Are you sure you want to quit?",
+//                                           QMessageBox::Yes | QMessageBox::No);
 
-        if (reply == QMessageBox::Yes) {
-            event->accept();  // Закрыть диалог
-        } else {
-            event->ignore();  // Отменить закрытие
-        }
-    }
+//        if (reply == QMessageBox::Yes) {
+//            event->accept();  // Закрыть диалог
+//        } else {
+//            event->ignore();  // Отменить закрытие
+//        }
+//    }
 //###########################################################################
 protected slots:
     void closeApp() {
         // Выполнить нужный код здесь.
-        qDebug() << "Application closed.";
+      //  qDebug() << "Application closed.";
     }
 //###########################################################################
 
