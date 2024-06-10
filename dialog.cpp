@@ -328,24 +328,7 @@ std::cout << "все синапсы пройдены, поставлены на 
               // Имя файла для записи
 //###########################################################################
            QString filename = "/home/viktor/my_projects_qt_2/Funktsiya_Resheniya_2/synapses.txt";
-//                  // /home/viktor/my_projects_qt_2/Funktsiya_Resheniya_2/synapses.txt
-//                  QFile file3(filename);
 
-//                  // Открываем файл для записи
-//                  if (!file3.open(QIODevice::WriteOnly | QIODevice::Text |QIODevice::Truncate)) {
-//                      std::cerr << "Unable to open file for writing!" << std::endl;
-
-//                  }
-
-//                  QTextStream out(&file3);
-
-//                  // Записываем данные из вектора в файл
-//                  for (const auto& value : *list_of_synapses) {
-//                      out << value << "\n";
-//                  }
-
-//                  // Закрываем файл
-//                  file3.close();
 
  //   bool writeVectorToFile(const QVector<int>& vector, const QString& filename)
            QFile file3(filename);
@@ -397,6 +380,24 @@ std::cout << "все синапсы пройдены, поставлены на 
                QMessageBox::information(this, tr("Success"), tr("Vector successfully verified in file."));
            } else {
                QMessageBox::critical(this, tr("Error"), tr("Data in file does not match vector."));
+           }
+
+//###########################################################################
+           QStringList mismatchIndices;
+           for (size_t i = 0; i < list_of_synapses.size(); ++i) {
+               if (list_of_synapses.at(i) != readData.at(i)) {
+                   mismatchIndices << QString::number(i);
+               }
+           }
+           if (mismatchIndices.isEmpty()) {
+               QMessageBox::information(this, tr("Success"), tr("Vector successfully verified in file."));
+           } else {
+//               QMessageBox::critical(this, tr("Error"),
+//                                     tr("Data in file does not match vector at indices: %1").arg(mismatchIndices.join(", ")));
+ //       qDebug() << "Data mismatch at indices:" << mismatchIndices.join(", ");
+
+//std::cout << "list_of_synapses[0] = "<<list_of_synapses[0]  <<std::endl;
+//std::cout << "list_of_synapses[1] = "<<list_of_synapses[1]  <<std::endl;
            }
 
 //###########################################################################
