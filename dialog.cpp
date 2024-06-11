@@ -14,8 +14,6 @@ using namespace std;
 #include <vector>
 #include <memory> // Для std::unique_ptr
 #include <QDebug>
-#include <chrono>
-#include <thread>
 //#include <log4cpp/Category.hh>
 //#include <log4cpp/Appender.hh>
 //#include <log4cpp/Layout.hh>
