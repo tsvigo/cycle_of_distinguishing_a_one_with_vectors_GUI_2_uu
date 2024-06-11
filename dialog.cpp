@@ -60,14 +60,14 @@ Dialog::Dialog(QWidget *parent)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // откроем txt нейроны
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-     QString filePath = QFileDialog::getOpenFileName(this, tr("Выберите файл txt"),
-     //QDir::homePath()
-       "/home/viktor/Загрузки/Data/Images/chars74k_png_Fnt_Sample1_black-white/300/txt/"
-        , tr("Все файлы txt (*.txt)"));
-         if (!filePath.isEmpty()) {
-          // filePath содержит полный путь выбранного файла
-       Nazvaniye_fayla_s_neyronami_i_signalom=filePath;
-               }
+//     QString filePath = QFileDialog::getOpenFileName(this, tr("Выберите файл txt"),
+//     //QDir::homePath()
+//       "/home/viktor/Загрузки/Data/Images/chars74k_png_Fnt_Sample1_black-white/300/txt/"
+//        , tr("Все файлы txt (*.txt)"));
+//         if (!filePath.isEmpty()) {
+//          // filePath содержит полный путь выбранного файла
+//       Nazvaniye_fayla_s_neyronami_i_signalom=filePath;
+//               }
  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
          //########################################################################################################
          ////////////////////////////////////////////// загрузка нейронов и сигнала из файла в вектор
@@ -75,7 +75,10 @@ Dialog::Dialog(QWidget *parent)
           // Открытие файла для чтения
           int chislo_oshibok_neyronov=0;
               std::cout << "читаем нейроны в вектор"<< std::endl;
-             QFile file(Nazvaniye_fayla_s_neyronami_i_signalom);
+             QFile file(
+ "/mnt/6017d124-d970-486e-b68f-59b516dd0511/risunki_Stability_Matrix/chars74k_png_Fnt_Sample1_black-white/300/txt/1/neurons_and_signal.txt"
+                 //        Nazvaniye_fayla_s_neyronami_i_signalom
+                        );
              if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
                  qDebug() << "Не удалось открыть файл!";
                     }
@@ -220,7 +223,7 @@ std::cout << "list_of_neurons->at(200)= "  <<list_of_neurons->at(200)  <<std::en
                               ; // + на -
 
               } //
-              if       (list_of_neurons->at(200)<0) goto d;
+           //   if       (list_of_neurons->at(200)<0) goto d;
           }
       //////////////////////
           for (int   neuron_index = 100, synapse_index = 10000;       // второй for
@@ -229,7 +232,7 @@ std::cout << "list_of_neurons->at(200)= "  <<list_of_neurons->at(200)  <<std::en
        ;
             ++neuron_index, ++synapse_index)
           {
-                    if (list_of_neurons->at(200)<0) break;
+                //    if (list_of_neurons->at(200)<0) break;
 
    //      if (list_of_synapses->at(synapse_index)!=0)
               list_of_neurons->at(200)
@@ -255,10 +258,10 @@ std::cout << "list_of_neurons->at(200)= "  <<list_of_neurons->at(200)  <<std::en
 std::cout << "list_of_neurons->at(200)= "  <<list_of_neurons->at(200)  <<std::endl;
 std::cout << "variable_synapse_index_counter= "  <<variable_synapse_index_counter  <<std::endl;
 // list_of_synapses->at(variable_synapse_index_counter)
-std::cout << "list_of_synapses->at("<<variable_synapse_index_counter<<")= "  <<list_of_synapses.at(variable_synapse_index_counter)  <<std::endl;
+//std::cout << "list_of_synapses->at("<<variable_synapse_index_counter<<")= "  <<list_of_synapses.at(variable_synapse_index_counter)  <<std::endl;
      if       (list_of_neurons->at(200)<0) goto d;
 // list_of_synapses->at(synapse_index)
-std::cout << "list_of_synapses->at(0)= "  <<list_of_synapses.at(0) <<std::endl;
+//std::cout << "list_of_synapses->at(0)= "  <<list_of_synapses.at(0) <<std::endl;
 /// подстройка //////////////////////////////////////////////////////////////////////////////////////////////
 ///
           if       (list_of_neurons->at(200)>=0) // если Программа считает что это не 1.
