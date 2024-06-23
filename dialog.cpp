@@ -260,6 +260,7 @@ std::cout << "variable_synapse_index_counter= "  <<variable_synapse_index_counte
      if       (list_of_neurons->at(200)<0) goto d;
 // list_of_synapses->at(synapse_index)
 //std::cout << "list_of_synapses->at(0)= "  <<list_of_synapses.at(0) <<std::endl;
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// подстройка //////////////////////////////////////////////////////////////////////////////////////////////
 ///
           if       (list_of_neurons->at(200)>=0) // если Программа считает что это не 1.
