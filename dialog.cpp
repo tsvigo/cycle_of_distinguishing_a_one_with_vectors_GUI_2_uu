@@ -264,9 +264,7 @@ std::cout << "variable_synapse_index_counter= "  <<variable_synapse_index_counte
 /// подстройка //////////////////////////////////////////////////////////////////////////////////////////////
 ///
           if       (list_of_neurons->at(200)>=0) // если Программа считает что это не 1.
-// начиная с variable_synapse_index_counter=10100 надо менять каждый синапс на 1
-//              for (variable_synapse_index_counter=10100;variable_synapse_index_counter>-1;
-//                   variable_synapse_index_counter--)
+
               {
   list_of_synapses.at(variable_synapse_index_counter)
           =
@@ -278,11 +276,7 @@ std::cout << "variable_synapse_index_counter= "  <<variable_synapse_index_counte
      // 859689765
           ;
 
-//   if( list_of_synapses->at(0)<=-9223372036854775808)
-// // exit(0);
-//       goto d;
-//   if( list_of_synapses->at(variable_synapse_index_counter)<-9223372036854775808)
-//  exit(0);
+
    if( list_of_synapses.at(variable_synapse_index_counter)<0//-9223372036854775808
            )
        list_of_synapses.at(variable_synapse_index_counter)=0
